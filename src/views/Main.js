@@ -7,7 +7,7 @@ const Main = () => {
 
     // Initialize data as per example in the PDF
     const [cells,setCells] = useState([])
-    const size = 10
+    const size = 20
     const enemies = Math.floor(size*0.667)
     const items = enemies
     const [rowPos,setRowPos] = useState(constants.rowPos)
