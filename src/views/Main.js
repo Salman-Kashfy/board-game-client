@@ -110,7 +110,7 @@ const Main = () => {
     }
 
     const startGame = () => {
-        let square = createCells()
+        let square = createCells();
         /*
         * Set knight initial position
         * */
