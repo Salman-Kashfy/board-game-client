@@ -1,5 +1,8 @@
-const constants = {
+export const constants = {
     rowPos:0,
     colPos:0
 }
-module.exports = constants
+
+export const apiUrl = {
+    scores:'scores'
+}

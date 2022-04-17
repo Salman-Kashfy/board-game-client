@@ -1,8 +1,10 @@
 import {useState,useEffect,createRef} from 'react'
 import Board from '../components/Board'
-import constants from '../constants'
+import {constants} from '../constants'
 import LostSound from '../assets/audio/lost.wav'
 import WonSound from '../assets/audio/won.wav'
+import {CreateScore} from '../services/scores.service'
+import {DateTime,Interval} from 'luxon'
 const Main = () => {
 
     // Initialize data as per example in the PDF
@@ -15,12 +17,15 @@ const Main = () => {
     const [gameOver,setGameOver] = useState(false)
     const [score,setScore] = useState(0)
     const [message,setMessage] = useState('')
+    const [startTime,setStartTime] = useState(new Date())
 
     // Sound references
     const lostRef = createRef()
     const wonRef = createRef()
 
     useEffect(() => {
+        const interval = Interval.fromDateTimes(startTime,DateTime.now().toUTC().plus({hours:1}))
+        console.log('Test interval',interval.length('seconds'))
         startGame()
     },[])
 
@@ -36,6 +41,17 @@ const Main = () => {
     * */
     const createCells = () => {
         return Array(size).fill(0).map(()=>Array(size).fill(0))
+    }
+
+    const createScore = async (newScore) => {
+        const interval = Interval.fromDateTimes(startTime,DateTime.now())
+        const data = {
+            score:newScore,
+            timeTaken: interval.length('seconds')
+        }
+        await CreateScore(data).then((result) => {
+            console.log(result)
+        })
     }
 
     /*
@@ -55,11 +71,13 @@ const Main = () => {
                 /*
                 * Game won and stop
                 * */
-                setScore(score + 1)
-                if( (score + 1) === items){
+                let newScore = score + 1
+                setScore(newScore)
+                if( (newScore) === items){
                     setGameOver(true)
                     setMessage('Congratulations! You won')
                     wonRef.current.play();
+                    createScore(newScore)
                 }
                 break
             default:
@@ -117,7 +135,7 @@ const Main = () => {
         setRowPos(constants.rowPos)
         setColPos(constants.colPos)
         square[constants.rowPos][constants.colPos] = 1
-
+        setStartTime(DateTime.now())
         let row,column;
         for (let i = 0; i < enemies; i++) {
             // Spawn Enemies
