@@ -8,8 +8,8 @@ function App() {
     return (
         <Router>
             <Switch>
-                <AppLayoutRoute exact path={'/'} component={Main}/>
-                <AppLayoutRoute exact path={'/leadership-board'} component={Leadership}/>
+                <AppLayoutRoute exact isAuth={false} path={'/'} component={Main}/>
+                <AppLayoutRoute exact isAuth={false} path={'/leadership-board'} component={Leadership}/>
             </Switch>
         </Router>
     );

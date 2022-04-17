@@ -1,7 +1,7 @@
 import {Route} from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-function AuthLayout({children}) {
+function AppLayout({children}) {
     return (
         <div>
             <Navbar/>
@@ -15,11 +15,11 @@ const AppLayoutRoute = ({component: Component, ...rest}) => {
         <>
             <Route
                 {...rest}
-                render={(matchProps) =>
-                    <AuthLayout>
+                render={(matchProps) => (
+                    <AppLayout>
                         <Component {...matchProps}/>
-                    </AuthLayout>
-                }
+                    </AppLayout>
+                )}
             />
         </>
     )

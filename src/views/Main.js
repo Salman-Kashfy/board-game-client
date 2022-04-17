@@ -24,8 +24,6 @@ const Main = () => {
     const wonRef = createRef()
 
     useEffect(() => {
-        const interval = Interval.fromDateTimes(startTime,DateTime.now().toUTC().plus({hours:1}))
-        console.log('Test interval',interval.length('seconds'))
         startGame()
     },[])
 
@@ -49,9 +47,7 @@ const Main = () => {
             score:newScore,
             timeTaken: interval.length('seconds')
         }
-        await CreateScore(data).then((result) => {
-            console.log(result)
-        })
+        await CreateScore(data)
     }
 
     /*
