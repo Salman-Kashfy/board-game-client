@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Link} from "react-router-dom";
 import './App.css'
 import AppLayoutRoute from "./layouts/AppLayout";
 import Main from "./views/Main";
@@ -8,8 +8,8 @@ function App() {
     return (
         <Router>
             <Switch>
-                <AppLayoutRoute exact isAuth={false} path={'/'} component={Main}/>
-                <AppLayoutRoute exact isAuth={false} path={'/leadership-board'} component={Leadership}/>
+                <AppLayoutRoute exact path={'/'} component={Main}/>
+                <AppLayoutRoute exact path={'/leadership-board'} component={Leadership}/>
             </Switch>
         </Router>
     );
