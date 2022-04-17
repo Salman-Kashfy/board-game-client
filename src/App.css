@@ -1,0 +1,45 @@
+/*=====================
+    General Styles
+=======================*/
+.text-center {
+    text-align: center;
+}
+.btn {
+    border: 0;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.my-3{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+/*=====================
+    Board Styles
+=======================*/
+.colCell{
+    display: flex;
+    justify-content: center;
+}
+.rowCell{
+    width: 50px;
+    height: 50px;
+    border: 2px solid #bbb;
+}
+.rowCell:before{
+    content: ' ';
+    width: 45px;
+    height: 45px;
+    display: block;
+    background-size: cover;
+    background-position: center;
+}
+.dynamic1:before{
+    background-image: url('./assets/knight.png');
+}
+.dynamicdanger:before{
+    background-image: url('./assets/danger.png');
+}
+.dynamicitem:before{
+    background-image: url('./assets/collectable.png');
+}
